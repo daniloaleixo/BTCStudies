@@ -1,0 +1,9 @@
+data/BTCUSD-1M-2015_01_01-2019_12_31.csv
+
+
+*.pyc
+.idea/
+.ipynb_checkpoints/
+**/__pycache__/*
+**/tensorboard_*/*
+**/models/*

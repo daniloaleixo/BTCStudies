@@ -1,5 +1,16 @@
-FROM jupyter/scipy-notebook
+FROM jupyter/scipy-notebook:ubuntu-18.04
+ENV GRANT_SUDO yes
+USER root
 
-RUN pip install backtrader && pip install tensorflow && pip install keras
+# Install ta-lib
+RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && tar -xvf ta-lib-0.4.0-src.tar.gz && cd ta-lib && ./configure --prefix=/usr && make
+RUN cd ta-lib && make install && ldconfig
+
+RUN pip install --upgrade pip
+
+RUN pip install keras
+RUN pip install tensorflow
+RUN pip install TA-lib
+RUN pip install gym && pip install keras_metrics && pip install backtrader
 
 EXPOSE 8888
